@@ -1,0 +1,229 @@
+<!DOCTYPE html>
+<html lang="fr">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Native AI - Assistant RedM & FiveM</title>
+    <link rel="stylesheet" href="/static/styles.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700&family=JetBrains+Mono:wght@400;500;600&display=swap" rel="stylesheet">
+</head>
+<body>
+    <!-- Particle Background -->
+    <div id="particles-container"></div>
+    
+    <!-- Landing Page -->
+    <div id="landing-page" class="page active">
+        <nav class="navbar">
+            <div class="nav-container">
+                <div class="logo">
+                    <span class="logo-text">Native</span>
+                    <span class="logo-ai">AI</span>
+                </div>
+                <div class="nav-links">
+                    <a href="#features" class="nav-link">Fonctionnalités</a>
+                    <a href="#about" class="nav-link">À propos</a>
+                    <button id="chat-btn" class="chat-button">
+                        <span>Commencer à coder</span>
+                        <div class="chat-button-glow"></div>
+                    </button>
+                </div>
+            </div>
+        </nav>
+
+        <main class="hero-section">
+            <div class="hero-content">
+                <div class="hero-badge">
+                    <span>🚀 Spécialisé RedM & FiveM</span>
+                </div>
+                
+                <h1 class="hero-title">
+                    <span class="typing-text" data-text="Assistant IA pour développeurs LUA"></span>
+                    <div class="cursor"></div>
+                </h1>
+                
+                <p class="hero-description">
+                    Native est votre assistant IA spécialisé dans l'écosystème RedM et FiveM. 
+                    Expert en développement LUA, frameworks de jeu et intégration Rockstar.
+                </p>
+                
+                <div class="hero-stats">
+                    <div class="stat-item">
+                        <div class="stat-number">1000+</div>
+                        <div class="stat-label">Scripts LUA analysés</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">24/7</div>
+                        <div class="stat-label">Disponibilité</div>
+                    </div>
+                    <div class="stat-item">
+                        <div class="stat-number">< 1s</div>
+                        <div class="stat-label">Temps de réponse</div>
+                    </div>
+                </div>
+                
+                <div class="hero-actions">
+                    <button id="main-chat-btn" class="primary-button">
+                        <span>Lancer Native AI</span>
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M13 7l5 5m0 0l-5 5m5-5H6"></path>
+                        </svg>
+                    </button>
+                    
+                    <button class="secondary-button">
+                        <span>Voir la documentation</span>
+                    </button>
+                </div>
+            </div>
+            
+            <div class="hero-visual">
+                <div class="code-preview">
+                    <div class="code-header">
+                        <div class="window-controls">
+                            <span class="control red"></span>
+                            <span class="control yellow"></span>
+                            <span class="control green"></span>
+                        </div>
+                        <span class="file-name">native_assistant.lua</span>
+                    </div>
+                    <div class="code-content">
+                        <pre id="code-animation"></pre>
+                    </div>
+                </div>
+            </div>
+        </main>
+        
+        <section id="features" class="features-section">
+            <div class="container">
+                <h2 class="section-title">Fonctionnalités spécialisées</h2>
+                <div class="features-grid">
+                    <div class="feature-card">
+                        <div class="feature-icon">🎮</div>
+                        <h3>RedM & FiveM Expert</h3>
+                        <p>Connaissance approfondie des APIs, événements et meilleures pratiques pour RedM et FiveM.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">⚡</div>
+                        <h3>Développement LUA</h3>
+                        <p>Assistance complète pour la création, débogage et optimisation de scripts LUA.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🛠️</div>
+                        <h3>Frameworks de jeu</h3>
+                        <p>Support pour ESX, QBCore, vRP et autres frameworks populaires de la communauté.</p>
+                    </div>
+                    
+                    <div class="feature-card">
+                        <div class="feature-icon">🔗</div>
+                        <h3>API Rockstar</h3>
+                        <p>Intégration et utilisation des APIs natives Rockstar Games pour GTA V et RDR2.</p>
+                    </div>
+                </div>
+            </div>
+        </section>
+    </div>
+    
+    <!-- Chat Page -->
+    <div id="chat-page" class="page">
+        <div class="chat-container">
+            <header class="chat-header">
+                <div class="chat-header-left">
+                    <button id="back-btn" class="back-button">
+                        <svg width="24" height="24" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 19l-7-7 7-7"></path>
+                        </svg>
+                    </button>
+                    <div class="chat-title">
+                        <h1>Native AI</h1>
+                        <span class="chat-status">
+                            <div class="status-indicator online"></div>
+                            En ligne - Prêt à coder
+                        </span>
+                    </div>
+                </div>
+                
+                <div class="chat-header-right">
+                    <button class="header-button" id="clear-chat">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M19 7l-.867 12.142A2 2 0 0116.138 21H7.862a2 2 0 01-1.995-1.858L5 7m5 4v6m4-6v6m1-10V4a1 1 0 00-1-1h-4a1 1 0 00-1 1v3M4 7h16"></path>
+                        </svg>
+                    </button>
+                    
+                    <button class="header-button" id="settings-btn">
+                        <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M10.325 4.317c.426-1.756 2.924-1.756 3.35 0a1.724 1.724 0 002.573 1.066c1.543-.94 3.31.826 2.37 2.37a1.724 1.724 0 001.065 2.572c1.756.426 1.756 2.924 0 3.35a1.724 1.724 0 00-1.066 2.573c.94 1.543-.826 3.31-2.37 2.37a1.724 1.724 0 00-2.572 1.065c-.426 1.756-2.924 1.756-3.35 0a1.724 1.724 0 00-2.573-1.066c-1.543.94-3.31-.826-2.37-2.37a1.724 1.724 0 00-1.065-2.572c-1.756-.426-1.756-2.924 0-3.35a1.724 1.724 0 001.066-2.573c-.94-1.543.826-3.31 2.37-2.37.996.608 2.296.07 2.572-1.065z"></path>
+                            <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15 12a3 3 0 11-6 0 3 3 0 016 0z"></path>
+                        </svg>
+                    </button>
+                </div>
+            </header>
+            
+            <div class="chat-messages" id="chat-messages">
+                <div class="welcome-message">
+                    <div class="ai-avatar">
+                        <div class="avatar-glow"></div>
+                        <span>N</span>
+                    </div>
+                    <div class="message-content">
+                        <div class="message-header">
+                            <span class="sender-name">Native AI</span>
+                            <span class="message-time">Maintenant</span>
+                        </div>
+                        <div class="message-text">
+                            Salut ! Je suis Native, votre assistant IA spécialisé dans RedM, FiveM et le développement LUA. 
+                            Je peux vous aider avec :
+                            <br><br>
+                            • 🎮 Développement de scripts pour RedM/FiveM<br>
+                            • ⚡ Débogage et optimisation de code LUA<br>
+                            • 🛠️ Intégration de frameworks (ESX, QBCore, vRP)<br>
+                            • 🔗 Utilisation des APIs natives Rockstar<br>
+                            <br>
+                            Que souhaitez-vous développer aujourd'hui ?
+                        </div>
+                    </div>
+                </div>
+            </div>
+            
+            <div class="chat-input-container">
+                <div class="suggestions-container">
+                    <div class="suggestion-chip">Créer un script de job</div>
+                    <div class="suggestion-chip">Déboguer une erreur LUA</div>
+                    <div class="suggestion-chip">Optimiser les performances</div>
+                    <div class="suggestion-chip">Intégrer ESX Framework</div>
+                </div>
+                
+                <div class="chat-input-wrapper">
+                    <textarea 
+                        id="chat-input" 
+                        placeholder="Décrivez votre projet RedM/FiveM ou posez une question sur LUA..."
+                        rows="1"
+                    ></textarea>
+                    
+                    <div class="input-actions">
+                        <button class="attachment-btn" title="Joindre un fichier">
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M15.172 7l-6.586 6.586a2 2 0 102.828 2.828l6.414-6.586a4 4 0 00-5.656-5.656l-6.415 6.585a6 6 0 108.486 8.486L20.5 13"></path>
+                            </svg>
+                        </button>
+                        
+                        <button id="send-btn" class="send-button" disabled>
+                            <svg width="20" height="20" fill="none" stroke="currentColor" viewBox="0 0 24 24">
+                                <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M12 19l9 2-9-18-9 18 9-2zm0 0v-8"></path>
+                            </svg>
+                        </button>
+                    </div>
+                </div>
+                
+                <div class="chat-footer">
+                    <span class="footer-text">
+                        Native AI peut faire des erreurs. Vérifiez les informations importantes.
+                    </span>
+                </div>
+            </div>
+        </div>
+    </div>
+    
+    <script src="/static/script.js"></script>
+</body>
+</html>
