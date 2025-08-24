@@ -6,7 +6,6 @@ from fastapi.middleware.cors import CORSMiddleware
 from pydantic import BaseModel
 from llama_cpp import Llama
 
-# === Config du modèle ===
 MODEL_PATH = os.path.join(os.path.dirname(__file__), "gpt-oss-20b-Q4_K_M.gguf")
 SYSTEM_PROMPT_FILE = os.path.join(os.path.dirname(__file__), "system_prompt_boosted.txt")
 
@@ -14,15 +13,15 @@ print(f"[NativeAI] Chargement du modèle: {MODEL_PATH}")
 try:
     llm = Llama(
         model_path=MODEL_PATH,
-        n_ctx=4096,       # plus grand contexte
-        n_threads=8,      # adapte selon ton CPU
+        n_ctx=4096,       
+        n_threads=8,      
         n_gpu_layers=0
     )
 except Exception as e:
     print(f"[ERREUR] Impossible de charger le modèle : {e}")
     llm = None
 
-# Charger le system prompt
+
 if os.path.exists(SYSTEM_PROMPT_FILE):
     with open(SYSTEM_PROMPT_FILE, "r", encoding="utf-8") as f:
         SYSTEM_PROMPT = f.read().strip()
@@ -30,31 +29,30 @@ else:
     SYSTEM_PROMPT = "You are an AI assistant."
     print(f"[ATTENTION] {SYSTEM_PROMPT_FILE} introuvable — prompt par défaut utilisé.")
 
-# === Application FastAPI ===
+
 app = FastAPI()
 
-# Autoriser les requêtes du navigateur
+
 app.add_middleware(
     CORSMiddleware,
-    allow_origins=["*"],  # tu peux restreindre à ["http://127.0.0.1:5500"]
+    allow_origins=["*"], 
     allow_credentials=True,
     allow_methods=["*"],
     allow_headers=["*"],
 )
 
-# Servir les fichiers statiques
+
 app.mount("/static", StaticFiles(directory="."), name="static")
 
-# Modèle pour POST /chat
+
 class ChatMessage(BaseModel):
     message: str
 
-# Page d'accueil
+
 @app.get("/")
 async def root():
     return FileResponse("index.html")
 
-# Endpoint chat
 @app.post("/chat")
 async def chat_endpoint(data: ChatMessage):
     prompt = data.message.strip()
@@ -65,7 +63,6 @@ async def chat_endpoint(data: ChatMessage):
         return JSONResponse({"response": "⚠️ Modèle non chargé. Vérifie ton chemin ou format GGUF."})
 
     try:
-        # On préfixe le prompt utilisateur avec le system prompt boosté
         full_prompt = f"{SYSTEM_PROMPT}\n\nUser: {prompt}\nAssistant:"
 
         output = llm(
@@ -79,7 +76,8 @@ async def chat_endpoint(data: ChatMessage):
     except Exception as e:
         return JSONResponse({"response": f"Erreur LLaMA: {str(e)}"})
 
-# Endpoint santé
+
 @app.get("/health")
 async def health_check():
     return {"ok": True}
+
