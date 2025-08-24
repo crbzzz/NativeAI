@@ -3,7 +3,7 @@ class NativeAI {
         this.currentPage = 'landing';
         this.chatHistory = [];
         this.isTyping = false;
-        this.apiUrl = 'http://localhost:8000'; // URL de ton backend FastAPI
+        this.apiUrl = 'http://localhost:8000'; 
 
         this.init();
     }
@@ -16,7 +16,7 @@ class NativeAI {
         this.autoResizeTextarea();
     }
 
-    // Création des particules
+
     createParticles() {
         const container = document.getElementById('particles-container');
         const particleCount = 50;
@@ -42,7 +42,7 @@ class NativeAI {
         }
     }
 
-    // Événements
+
     setupEventListeners() {
         document.getElementById('chat-btn').addEventListener('click', () => this.showChat());
         document.getElementById('main-chat-btn').addEventListener('click', () => this.showChat());
@@ -65,7 +65,7 @@ class NativeAI {
         document.getElementById('chat-input').addEventListener('input', () => this.validateInput());
     }
 
-    // Navigation
+
     showChat() {
         document.getElementById('landing-page').classList.remove('active');
         document.getElementById('chat-page').classList.add('active');
@@ -99,7 +99,7 @@ class NativeAI {
         setTimeout(typeWriter, 1000);
     }
 
-    // Animation code
+
     startCodeAnimation() {
         const codeLines = [
             "-- Native AI Assistant pour RedM/FiveM",
@@ -147,7 +147,6 @@ class NativeAI {
         setTimeout(animateCode, 2000);
     }
 
-    // Redimension automatique de la zone de texte
     autoResizeTextarea() {
         const textarea = document.getElementById('chat-input');
         textarea.addEventListener('input', function () {
