@@ -2,7 +2,8 @@ fastapi
 uvicorn
 pydantic>=2
 httpx>=0.28
-llama-cpp-python  # installé via l’index CPU spécial, garde-le hors pin ici
+llama-cpp-python 
 diskcache
 jinja2
+
 numpy
